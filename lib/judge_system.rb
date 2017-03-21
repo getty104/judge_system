@@ -37,7 +37,8 @@ module JudgeSystem
 
 	module Wandbox
 		def run lang, code, input, time
-			sys = File.open("./lib/compile_systems/#{lang}_system.cpp", "r").read
+			path = Gem::Specification.find_by_path('judge_system').full_gem_path
+			sys = File.open("#{path}/lib/compile_systems/#{lang}_system.cpp", "r").read
 			data = nil
 			stdin = code + "\n<$><*><$><*><$><*><$><*><$><*><$><*><$>\n" + input
 			begin
