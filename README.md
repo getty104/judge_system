@@ -27,7 +27,7 @@ $ gem install judge_system
 ```ruby
 require 'judge_system'
 
-JudgeSystem.judge_result lang(string text), code(string text), answer(string text), input(string text), time-limit(num sec)
+JudgeSystem.judge_result lang: (string text), code: (string text), answer: (string text), stdin: (string text), time: (num sec)
 
 #Lang is the extension of languages (example: c is 'c', c++ is 'cpp', ruby is 'rb', java is 'java').
 #You can't use more than 1M byte code, input, answer.
@@ -39,10 +39,10 @@ example
 ```ruby
 require 'judge_system'
 
-p JudgeSystem.judge_result 'rb', "n = gets.to_i\nputs n", "1\n", "1\n", 5 #=> 'AC'
-p JudgeSystem.judge_result 'rb', "n = gets.to_i\nputs n", "1\n", "2\n", 5 #=> 'WA'
-p JudgeSystem.judge_result 'rb', "n = gets.to_i\nputs n", "1\n", "\n", 0.001 #=> 'TLE'
-p JudgeSystem.judge_result 'c', "n = gets.to_i\nputs n", "1\n", "1\n", 5 #=> 'RE'
+p JudgeSystem.judge_result lang: 'rb', code: "n = gets.to_i\nputs n", answer: "1\n", stdin: "1\n", time: 5 #=> 'AC'
+p JudgeSystem.judge_result lang: 'rb', code: "n = gets.to_i\nputs n", answer: "1\n", stdin: "2\n", time: 5 #=> 'WA'
+p JudgeSystem.judge_result lang: 'rb', code: "n = gets.to_i\nputs n", answer: "1\n", stdin: "\n", time: 0.001 #=> 'TLE'
+p JudgeSystem.judge_result lang: 'c',  code: "n = gets.to_i\nputs n", answer: "1\n", stdin: "1\n", time: 5 #=> 'RE'
 ```
 
 
