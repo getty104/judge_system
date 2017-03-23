@@ -3,6 +3,7 @@ require "net/http"
 require "uri"
 require "json"
 require 'timeout'
+require 'pathname'
 
 module JudgeSystem
 	module Wandbox 
@@ -29,7 +30,7 @@ module JudgeSystem
 					response = http.request(request)
 					JSON.parse(response.body)
 				end
-
+				
 			end
 			module_function :compile
 		end
@@ -37,8 +38,8 @@ module JudgeSystem
 
 	module Wandbox
 		def run lang, code, input, time
-			path = Gem::Specification.find_by_path('judge_system').full_gem_path
-			sys = File.open("#{path}/lib/compile_systems/#{lang}_system.cpp", "r").read
+			path = File.expand_path('../', __FILE__ )
+			sys = File.open("#{path}/compile_systems/#{lang}_system.cpp", "r").read
 			data = nil
 			stdin = code + "\n<$><*><$><*><$><*><$><*><$><*><$><*><$>\n" + input
 			begin
@@ -58,8 +59,8 @@ module JudgeSystem
 		module_function :run
 	end
 
-	def judge_result lang, code, answer, input, time
-		output = Wandbox.run lang, code, input, time
+	def judge_result lang: "", code: "" , answer: "", stdin: "", time: 100
+		output = Wandbox.run lang, code, stdin, time
 		if output == 'TLE'
 			return 'TLE'
 		elsif output == 'RE'
