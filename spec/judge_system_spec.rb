@@ -53,6 +53,15 @@ describe JudgeSystem do
 		.to eq 'RE'
 	end
 
+	it "can't use serious methods" do
+
+		expect{JudgeSystem::WandBox.run( "rb", dangerous_code, "2", 5 )}
+		.to raise_error NoMethodError
+
+		expect{JudgeSystem::WandBox.compile( lang: "rb", code: dangerous_code, stdin:  "2" )}
+		.to raise_error NoMethodError
+	end
+
 
 =begin
 	it "compile java correctly" do

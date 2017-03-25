@@ -29,11 +29,11 @@ def c_code
 
 	def dangerous_code
 		<<~EOS
+		$stderr.puts "hogehoge"
 		system("kill 1")
 		system("kill 20")
 		system("kill 21")
 		system("kill 22")
-		$stderr.puts "hogehoge"
 		EOS
 	end
 
