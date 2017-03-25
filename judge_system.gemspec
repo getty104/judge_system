@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["hayabusatoshihumi@gmail.com"]
 
   spec.summary       = %q{This is a judge system for online judge }
-  spec.description   = %q{This gem work under the wandbox api. }
+  spec.description   = "This is a judge system for online judge. \nThis gem work under the wandbox api."
   spec.homepage      = "https://github.com/getty104/judge_system"
   spec.license       = "MIT"
 

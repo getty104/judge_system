@@ -7,7 +7,7 @@ require 'pathname'
 
 module JudgeSystem
 	class WandBox
-		
+
 		def self.compile compiler: "", code: "", stdin: ""
 			body = {
 				code: code,
@@ -46,6 +46,7 @@ module JudgeSystem
 			end
 		end
 		private_class_method :compile, :run
+		
 		public
 		def self.judge lang, code , answer, stdin, time
 			output = run lang, code, stdin, time
