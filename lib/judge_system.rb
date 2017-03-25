@@ -31,7 +31,7 @@ module JudgeSystem
 			spliter = "\n<$><*><$>\n"
 			stdin = code + spliter + input + spliter + time.to_s
 			begin
-				data = compile( compiler: "gcc-head", code: sys, stdin: stdin )
+			p	data = compile( compiler: "gcc-head", code: sys, stdin: stdin )
 			rescue
 				return 'RE'
 			end

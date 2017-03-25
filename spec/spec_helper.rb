@@ -56,6 +56,29 @@ def c_code
 			EOS
 		end
 
+		def go_code
+			<<~EOS
+			package main
+			import (
+			"bufio"
+			"fmt"
+			"os"
+			)
+			var sc = bufio.NewScanner(os.Stdin)
+			func main() {
+				sum := 0
+				for i := 0; i < 100000; i++ {
+					sum += i
+				}
+				var s string
+				if sc.Scan() {
+					s = sc.Text()
+				}
+				fmt.Println(s)
+			}
+			EOS
+		end
+
 		def java_code
 			<<~EOS
 			import java.util.*;

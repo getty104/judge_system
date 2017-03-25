@@ -5,7 +5,7 @@ describe JudgeSystem do
 	it "has a version number" do
 		expect(JudgeSystem::VERSION).not_to be nil
 	end
-
+	
 	it "compile ruby correctly" do
 		expect(JudgeSystem.judge_result(lang: "rb", code: rb_code, answer: "2\n", stdin: "2", time: 5 ))
 		.to eq 'AC'
@@ -47,6 +47,22 @@ describe JudgeSystem do
 		expect(JudgeSystem.judge_result(lang: "c", code: c_code, answer: "2\n", stdin: "2", time: 0.01 ))
 		.to eq 'TLE'
 	end
+
+		it "compile go correctly" do
+		expect(JudgeSystem.judge_result(lang: "go", code: go_code, answer: "2\n", stdin: "2\n", time: 5 ))
+		.to eq 'AC'
+
+		expect(JudgeSystem.judge_result(lang: "go", code: go_code, answer: "1\n", stdin: "2", time: 5 ))
+		.to eq 'WA'
+
+		expect(JudgeSystem.judge_result(lang: "rb", code: go_code, answer: "2\n", stdin: "2", time: 5 ))
+		.to eq 'RE'
+
+		expect(JudgeSystem.judge_result(lang: "go", code: go_code, answer: "2\n", stdin: "2", time: 0.01 ))
+		.to eq 'TLE'
+	end
+
+
 
 	it "run safely" do
 		expect(JudgeSystem.judge_result(lang: "rb", code: dangerous_code, answer: "2\n", stdin: "2", time: 5 ))
