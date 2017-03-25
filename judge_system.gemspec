@@ -6,7 +6,7 @@ require 'judge_system/version'
 Gem::Specification.new do |spec|
   spec.name          = "judge_system"
   spec.version       = JudgeSystem::VERSION
-  spec.authors       = ["Toshifumi Kiyono"]
+  spec.authors       = ["getty104"]
   spec.email         = ["hayabusatoshihumi@gmail.com"]
 
   spec.summary       = %q{This is a judge system for online judge }
