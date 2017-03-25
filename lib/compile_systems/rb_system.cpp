@@ -2,21 +2,27 @@
 #include <fstream>
 using namespace std;
 
+char command[1024];
+
 int main(int argc, char const *argv[])
 {
   ofstream ofs;
-  ofs.open("test.rb",ios::binary);
+  ofs.open("main.rb",ios::binary);
   string buf;
+  string splitter="<$><*><$>";
+  string time;
   while(getline(cin,buf)){
-    if(buf=="<$><*><$><*><$><*><$><*><$><*><$><*><$>")break;
+    if(buf==splitter)break;
     ofs<<buf<<endl;
   }
   ofs.close();
   ofs.open("test.in",ios::binary);
   while(getline(cin,buf)){
+    if(buf==splitter)break;
     ofs<<buf<<endl;
   }
   ofs.close();
-    system("/usr/bin/time -f '%U' /opt/wandbox/ruby-head/bin/ruby test.rb < test.in");
+  cin>>time;
+  system(("timeout -s 9 " + time + " /opt/wandbox/ruby-head/bin/ruby main.rb < test.in").c_str());
   return 0;
 }

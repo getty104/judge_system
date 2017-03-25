@@ -30,7 +30,7 @@ module JudgeSystem
 					response = http.request(request)
 					JSON.parse(response.body)
 				end
-				
+
 			end
 			module_function :compile
 		end
@@ -41,19 +41,21 @@ module JudgeSystem
 			path = File.expand_path('../', __FILE__ )
 			sys = File.open("#{path}/compile_systems/#{lang}_system.cpp", "r").read
 			data = nil
-			stdin = code + "\n<$><*><$><*><$><*><$><*><$><*><$><*><$>\n" + input
+			spliter = "\n<$><*><$>\n"
+			stdin = code + spliter + input + spliter + time.to_s
 			begin
-					data = Web.compile({ compiler: "gcc-head", code: sys, stdin: stdin })
+			p	data = Web.compile({ compiler: "gcc-head", code: sys, stdin: stdin })
 			rescue
 				return 'RE'
 			end
-			runtime = data["program_error"].split("\n")[-1].to_f
-			if data["program_output"] == nil
-				return 'RE'
-			elsif runtime > time
-				return "TLE"
+			error = data["program_error"]
+			result = data["program_output"]
+			if error == "Killed\n"
+				return 'TLE'
+			elsif result == nil && error 
+				return "RE"
 			else
-				return data["program_output"] 
+				return result
 			end
 		end
 		module_function :run
