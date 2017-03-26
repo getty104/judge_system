@@ -1,10 +1,10 @@
 require "judge_system/version"
+require 'zlib_input'
 require "net/http"
 require "uri"
 require "json"
 require 'timeout'
 require 'pathname'
-
 module JudgeSystem
 	class WandBox
 
@@ -16,7 +16,7 @@ module JudgeSystem
 			}
 			uri = URI.parse("http://melpon.org/wandbox/api/compile.json")
 			request = Net::HTTP::Post.new(uri.request_uri, initheader = { "Content-type" => "application/json" },)
-			request.body = body.to_json
+			request.body = JSON.generate body
 			http = Net::HTTP.new(uri.host, uri.port)
 			http.start do |http|
 				response = http.request(request)
@@ -26,14 +26,15 @@ module JudgeSystem
 
 		def self.run lang, code, input, time
 			path = File.expand_path('../', __FILE__ )
-			sys = File.open("#{path}/compile_systems/#{lang}_system.cpp", "r").read
+			sys = File.open("#{path}/compile_systems/#{lang}_system.rb", "r").read
 			data = nil
 			spliter = "\n<$><*><$>\n"
+			input = ZlibInput.zlib(input)
 			stdin = code + spliter + input + spliter +  ("%f" % time)
 			begin
-				data = compile( compiler: "gcc-head", code: sys, stdin: stdin )
-			rescue
-				return 'RE'
+				data = compile( compiler: "ruby-head", code: sys, stdin: stdin )
+			rescue 
+				return "RE"
 			end
 			error = data["program_error"]
 			result = data["program_output"]
@@ -65,7 +66,7 @@ module JudgeSystem
 		end
 	end
 
-	def judge_result lang: "", code: "" , answer: "", stdin: "", time: 100
+	def judge_result lang: "", code: "" , answer: "", stdin: "", time: 20
 		WandBox.judge lang, code, answer, stdin, time
 	end
 

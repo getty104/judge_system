@@ -35,7 +35,7 @@ describe JudgeSystem do
 	end
 
 	it "compile c correctly" do
-		expect(JudgeSystem.judge_result(lang: "c", code: c_code, answer: "2\n", stdin: "2\n", time: 5 ))
+		expect(JudgeSystem.judge_result(lang: "c", code: c_code, answer: "2\n", stdin: "2", time: 5 ))
 		.to eq 'AC'
 
 		expect(JudgeSystem.judge_result(lang: "c", code: c_code, answer: "1\n", stdin: "2", time: 5 ))
@@ -49,7 +49,7 @@ describe JudgeSystem do
 	end
 
 	it "compile go correctly" do
-		expect(JudgeSystem.judge_result(lang: "go", code: go_code, answer: "2\n", stdin: "2\n", time: 5 ))
+		expect(JudgeSystem.judge_result(lang: "go", code: go_code, answer: "2\n", stdin: "2", time: 5 ))
 		.to eq 'AC'
 
 		expect(JudgeSystem.judge_result(lang: "go", code: go_code, answer: "1\n", stdin: "2", time: 5 ))
@@ -63,7 +63,7 @@ describe JudgeSystem do
 	end
 
 		it "compile python correctly" do
-		expect(JudgeSystem.judge_result(lang: "py", code: py_code, answer: "2\n", stdin: "2\n", time: 5 ))
+		expect(JudgeSystem.judge_result(lang: "py", code: py_code, answer: "2\n", stdin: "2", time: 5 ))
 		.to eq 'AC'
 
 		expect(JudgeSystem.judge_result(lang: "py", code: py_code, answer: "1\n", stdin: "2", time: 5 ))
