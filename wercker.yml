@@ -1,5 +1,5 @@
     # http://devcenter.wercker.com/docs/services/postgresql.html
-
+box: ruby
     # - mongo
     # http://devcenter.wercker.com/docs/services/mongodb.html
 
