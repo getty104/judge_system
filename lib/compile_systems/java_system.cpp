@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
   ofs.open("Main.java",ios::binary);
   string buf;
   while(getline(cin,buf)){
-    if(buf=="<$><*><$><*><$><*><$><*><$><*><$><*><$>")break;
+    if(buf=="<$><*><$>")break;
     ofs<<buf<<endl;
   }
   ofs.close();
@@ -25,54 +25,64 @@ int main(int argc, char const *argv[])
 
 
 
-/*import java.util.*;
+/*
+import java.util.*;
 import java.io.*;
 class Career{
   public static void main(String[] args){
 
-    Scanner sc = null;
-    File code =  null;
-    PrintWriter pw = null;
-    File stdin = null;
-    PrintWriter pw2 = null;
-    String str = null;
-    BufferedReader br = null;
-    Process compile = null;
-    Runtime r = null;
-    InputStream run = null;
+    BufferedReader sc;
+    File code;
+    File stdin;
+    FileWriter pw1;
+    FileWriter pw2;
+    String str;
+    BufferedReader br1;
+    BufferedReader br2;
+    Runtime r;
+    Runtime rr;
+    InputStream compile;
+    InputStream run;
 
     try{
-      sc = new Scanner(System.in);
+      sc = new BufferedReader(new InputStreamReader(System.in));
+      code = new File("Main.java");
+      code.createNewFile();
       code = new File("Main.java");
       stdin = new File("test.in");
-      pw = new PrintWriter(new BufferedWriter(new FileWriter(code)));
-      pw2 = new PrintWriter(new BufferedWriter(new FileWriter(stdin)));
+      stdin.createNewFile();
+      stdin = new File("test.in");
+      pw1 = new FileWriter(code, true);
+      pw2 = new FileWriter(stdin, true);
       while(true){
-       str = sc.next();
-       if(str.equals("<$><*><$><*><$><*><$><*><$><*><$><*><$>")){
+       str = sc.readLine();
+       if(str.equals("<$><*><$>")){
         break;
       }
-      pw.println(str);
+      pw1.write(str);
     }
-    code.createNewFile();
-
-    while(sc.hasNext()){
-      str = sc.next();
-      pw2.println(str);
+    pw1.close();
+   
+  
+    while((str = sc.readLine()) != null){
+      pw2.write(str);
     }
-    stdin.createNewFile();
-
+    pw2.close();
     r = Runtime.getRuntime();
-    compile = r.exec("/opt/wandbox/openjdk-head/bin/javac Main.java");
-    compile.waitFor();
-    run = r.exec("/usr/bin/time -f '%U' /opt/wandbox/openjdk-head/bin/java Main < test.in").getInputStream();
-    br = new BufferedReader(new InputStreamReader(run));
-    String line;
-    while ((line = br.readLine()) != null) {
-      System.out.println(line);
+    rr = Runtime.getRuntime();
+    compile = r.exec("/opt/wandbox/openjdk-head/bin/javac Main.java").getInputStream();
+    run = rr.exec("/opt/wandbox/openjdk-head/bin/java Main < test.in").getInputStream();
+    br1 = new BufferedReader(new InputStreamReader(compile));
+    br2 = new BufferedReader(new InputStreamReader(run));
+    while ((str = br1.readLine()) != null) {
+      System.out.println(str);
+    }
+    while ((str = br2.readLine()) != null) {
+      System.out.println(str);
     }
   }catch(Exception e ){
     e.printStackTrace();
   }
 }
-}*/
+}
+*/
