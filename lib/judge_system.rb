@@ -29,9 +29,9 @@ module JudgeSystem
 			sys = File.open("#{path}/compile_systems/#{lang}_system.cpp", "r").read
 			data = nil
 			spliter = "\n<$><*><$>\n"
-			stdin = code + spliter + input + spliter + time.to_s
+			stdin = code + spliter + input + spliter +  ("%f" % time)
 			begin
-				data = compile( compiler: "gcc-head", code: sys, stdin: stdin )
+			p	data = compile( compiler: "gcc-head", code: sys, stdin: stdin )
 			rescue
 				return 'RE'
 			end

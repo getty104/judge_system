@@ -79,6 +79,13 @@ def c_code
 			EOS
 		end
 
+		def py_code
+			<<~EOS
+			num = input()
+			print(num)
+			EOS
+		end
+
 		def java_code
 			<<~EOS
 			import java.util.*;
