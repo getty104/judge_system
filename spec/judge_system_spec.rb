@@ -62,7 +62,7 @@ describe JudgeSystem do
 		.to eq 'TLE'
 	end
 
-		it "compile python correctly" do
+	it "compile python correctly" do
 		expect(JudgeSystem.judge_result(lang: "py", code: py_code, answer: "2\n", stdin: "2", time: 5 ))
 		.to eq 'AC'
 
@@ -92,6 +92,11 @@ describe JudgeSystem do
 
 
 =begin
+  it "big data test" do
+		expect(JudgeSystem.judge_result(lang: "rb", code: rb_code, answer: "1\n", stdin: File.open("write big data path").read, time: 5 ))
+		.to eq 'WA'
+	end
+
 	it "compile java correctly" do
 		expect(JudgeSystem.judge_result(lang: "java", code: java_code, answer: "2\n", stdin: "2", time: 5 ))
 		.to eq 'AC'

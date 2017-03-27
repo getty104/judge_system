@@ -29,7 +29,7 @@ module JudgeSystem
 			path = File.expand_path('../', __FILE__ )
 			sys = File.open("#{path}/compile_systems/#{lang}_system.rb", "r").read
 			data = nil
-			spliter = "<$><*><$>\n"
+			spliter = "\n<$><*><$>\n"
 			stdin = ZlibInput.zlib(code + spliter + input + spliter +  ("%f" % time))
 			begin
 				data = compile( compiler: "ruby-head", code: sys, stdin: stdin )

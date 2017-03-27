@@ -1,6 +1,6 @@
 require 'zlib'
 require 'base64'
-stdin = Zlib::Inflate.new(Zlib::MAX_WBITS + 32).inflate(Base64.decode64($stdin.read)).split("<$><*><$>\n")
+stdin = Zlib::Inflate.new(Zlib::MAX_WBITS + 32).inflate(Base64.decode64($stdin.read)).split("\n<$><*><$>\n")
 code = stdin[0]
 input = stdin[1]
 time = stdin[2]
