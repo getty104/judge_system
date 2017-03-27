@@ -1,22 +1,19 @@
 require 'zlib'
+require 'base64'
+stdin = Zlib::Inflate.new(Zlib::MAX_WBITS + 32).inflate(Base64.decode64($stdin.read)).split("<$><*><$>\n")
+code = stdin[0]
+input = stdin[1]
+time = stdin[2]
 
 File.open("./main.c", "w") do |file|
-	loop{
-		str = gets.chomp.to_s
-		break if str == "<$><*><$>"
-		file.puts str
-	}
+	file.puts code
 	file.close
 end
 
 File.open("./test.in", "w") do |file|
-	loop{
-		str = gets.chomp.to_s
-		break if str == "<$><*><$>"
-		file.puts Zlib::Inflate.inflate(str)
-	}
+	file.puts input
 	file.close
 end
-time = gets
+
 system "/opt/wandbox/gcc-head/bin/gcc main.c -o main -O2"
 system "timeout -s 9 " + time + " ./main < test.in" 

@@ -5,6 +5,7 @@ require "uri"
 require "json"
 require 'timeout'
 require 'pathname'
+
 module JudgeSystem
 	class WandBox
 
@@ -28,13 +29,12 @@ module JudgeSystem
 			path = File.expand_path('../', __FILE__ )
 			sys = File.open("#{path}/compile_systems/#{lang}_system.rb", "r").read
 			data = nil
-			spliter = "\n<$><*><$>\n"
-			input = ZlibInput.zlib(input)
-			stdin = code + spliter + input + spliter +  ("%f" % time)
+			spliter = "<$><*><$>\n"
+			stdin = ZlibInput.zlib(code + spliter + input + spliter +  ("%f" % time))
 			begin
 				data = compile( compiler: "ruby-head", code: sys, stdin: stdin )
 			rescue 
-				return "RE"
+				return 'RE'
 			end
 			error = data["program_error"]
 			result = data["program_output"]
