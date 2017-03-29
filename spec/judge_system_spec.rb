@@ -76,6 +76,20 @@ describe JudgeSystem do
 		.to eq 'TLE'
 	end
 
+	it "compile swift correctly" do
+		expect(JudgeSystem.judge_result(lang: "swift", code: swift_code, answer: "2\n", stdin: "2", time: 5 ))
+		.to eq 'AC'
+
+		expect(JudgeSystem.judge_result(lang: "swift", code: swift_code, answer: "1\n", stdin: "2", time: 5 ))
+		.to eq 'WA'
+
+		expect(JudgeSystem.judge_result(lang: "rb", code: swift_code, answer: "2\n", stdin: "2", time: 5 ))
+		.to eq 'RE'
+
+		expect(JudgeSystem.judge_result(lang: "swift", code: swift_code, answer: "2\n", stdin: "2", time: 0.001 ))
+		.to eq 'TLE'
+	end
+
 	it "run safely" do
 		expect(JudgeSystem.judge_result(lang: "rb", code: dangerous_code, answer: "2\n", stdin: "2", time: 5 ))
 		.to eq 'RE'

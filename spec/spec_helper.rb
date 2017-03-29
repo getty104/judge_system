@@ -56,6 +56,13 @@ def c_code
 			EOS
 		end
 
+		def swift_code
+			<<~EOS
+			let input_line = readLine()!
+			print(input_line)
+			EOS
+		end
+
 		def go_code
 			<<~EOS
 			package main
