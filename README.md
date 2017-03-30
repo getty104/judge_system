@@ -31,7 +31,7 @@ require 'judge_system'
 JudgeSystem.judge_result lang: (string text), code: (string text), answer: (string text), stdin: (string text), time: (num sec)
 
 #Lang is the extension of languages (example: c is 'c', c++ is 'cpp', ruby is 'rb', go is 'go', python3 is 'py').
-#You can't use more than 2M byte code and input.
+#You can't use more than 6M byte code and input.
 
 ```
 
