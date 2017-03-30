@@ -30,7 +30,7 @@ module JudgeSystem
 			sys = File.open("#{path}/compile_systems/#{lang}_system.rb", "r").read
 			data = nil
 			spliter = "\n<$><*><$>\n"
-			stdin = ZlibInput.zlib(code + spliter + input + spliter +  ("%f" % time))
+			stdin = BZip2Input.compress(code + spliter + input + spliter +  ("%f" % time))
 			begin
 				data = compile( compiler: "ruby-head", code: sys, stdin: stdin )
 			rescue 

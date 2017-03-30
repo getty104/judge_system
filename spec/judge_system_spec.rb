@@ -104,12 +104,12 @@ describe JudgeSystem do
 		.to raise_error NoMethodError
 	end
 
-
 =begin
   it "big data test" do
-		expect(JudgeSystem.judge_result(lang: "rb", code: rb_code, answer: "1\n", stdin: File.open("write big data path").read, time: 5 ))
+		expect(JudgeSystem.judge_result(lang: "rb", code: rb_code, answer: "1\n", stdin: File.open("../test_space/hoge.in").read, time: 5 ))
 		.to eq 'WA'
 	end
+
 
 	it "compile java correctly" do
 		expect(JudgeSystem.judge_result(lang: "java", code: java_code, answer: "2\n", stdin: "2", time: 5 ))

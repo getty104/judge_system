@@ -1,9 +1,12 @@
-require 'zlib'
+require 'rbzip2'
 require 'base64'
-module ZlibInput
-	def zlib input
-		data = Zlib::Deflate.deflate(input, Zlib::BEST_COMPRESSION)
-		Base64.encode64(data)
+module BZip2Input
+	def compress input
+		string = StringIO.new    
+		bz2  = RBzip2::FFI::Compressor.new string 
+		bz2.write input                    
+		bz2.close                           
+		Base64.encode64(string.string)
 	end
-	module_function :zlib
+	module_function :compress
 end

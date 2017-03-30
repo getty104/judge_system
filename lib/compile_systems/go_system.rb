@@ -1,6 +1,13 @@
-require 'zlib'
 require 'base64'
-stdin = Zlib::Inflate.new(Zlib::MAX_WBITS + 32).inflate(Base64.decode64($stdin.read)).split("\n<$><*><$>\n")
+
+File.open("stdin.txt.bz2", "wb") do |file|
+	file.write Base64.decode64 $stdin.read
+	file.close
+end
+
+system("bunzip2 stdin.txt.bz2")
+
+stdin = File.open("stdin.txt").read.split("\n<$><*><$>\n")
 code = stdin[0]
 input = stdin[1]
 time = stdin[2]
