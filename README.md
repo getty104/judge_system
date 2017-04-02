@@ -5,7 +5,7 @@ Judge_system is a compile and judge system for online judge.
 This system work on [melpon/wandbox](https://github.com/melpon/wandbox).  
 That means you don't have to concern about dangerous codes if you use judge_system.  
 Judge_system returns four results ('AC', 'WA', 'RE', 'TLE').  
-Now, it can compile c, c++, ruby, go, python3, swift.  
+Now, it can compile c, c++, ruby, go, python3, swift, haskell.  
 
 ## Installation
 

@@ -105,3 +105,9 @@ def c_code
 			}
 			EOS
 		end
+
+		def hs_code
+			<<~EOS
+			main = getLine >>= putStrLn
+			EOS
+		end
