@@ -1,0 +1,28 @@
+AllCops:
+  Exclude:
+    - 'spec/*.rb'
+AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+
+MethodLength:
+  Max: 20
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - 'lib/compile_systems/*.rb'
+
+Metrics/AbcSize:
+  Max: 20
