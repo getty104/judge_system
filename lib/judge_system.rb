@@ -3,7 +3,6 @@ require 'zlib_input'
 require "net/http"
 require "uri"
 require "json"
-require 'timeout'
 require 'pathname'
 
 module JudgeSystem
@@ -33,21 +32,21 @@ module JudgeSystem
 			stdin = BZip2Input.compress(code + spliter + input + spliter +  ("%f" % time))
 			begin
 				data = compile( compiler: "ruby-head", code: sys, stdin: stdin )
-			rescue 
+			rescue
 				return 'RE'
 			end
 			error = data["program_error"]
 			result = data["program_output"]
 			if error == "Killed\n"
 				return 'TLE'
-			elsif result == nil && error 
+			elsif result == nil && error
 				return "RE"
 			else
 				return result
 			end
 		end
 		private_class_method :compile, :run
-		
+
 		public
 		def self.judge lang, code , answer, stdin, time
 			output = run lang, code, stdin, time
@@ -57,7 +56,7 @@ module JudgeSystem
 				return 'RE'
 			else
 				result = output == answer
-				if result 
+				if result
 					return 'AC'
 				else
 					return 'WA'
