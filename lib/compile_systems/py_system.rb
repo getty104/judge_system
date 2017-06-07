@@ -1,25 +1,25 @@
 require 'base64'
 
-File.open("stdin.txt.bz2", "wb") do |file|
+File.open('stdin.txt.bz2', 'wb') do |file|
 	file.write Base64.decode64 $stdin.read
 	file.close
 end
 
-system("bunzip2 stdin.txt.bz2")
+system('bunzip2 stdin.txt.bz2')
 
-stdin = File.open("stdin.txt").read.split("\n<$><*><$>\n")
+stdin = File.open('stdin.txt').read.split("\n<$><*><$>\n")
 code = stdin[0]
 input = stdin[1]
 time = stdin[2]
 
-File.open("./main.py", "w") do |file|
+File.open('./main.py', 'w') do |file|
 	file.puts code
 	file.close
 end
 
-File.open("./test.in", "w") do |file|
+File.open('./test.in', 'w') do |file|
 	file.puts input
 	file.close
 end
 
-system "timeout -s 9 " + time + " /opt/wandbox/cpython-head/bin/python3 main.py < test.in"
+system('timeout -s 9 ' + time + ' /opt/wandbox/cpython-head/bin/python3 main.py < test.in')
