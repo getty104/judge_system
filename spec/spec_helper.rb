@@ -2,7 +2,7 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'judge_system'
 
 def c_code
-  <<-EOS
+  <<~EOS
   #include <stdio.h>
   char buf[2048];
   int main(void)
@@ -20,14 +20,14 @@ def c_code
     end
 
 def rb_code
-  <<-EOS
+  <<~EOS
       n = gets.to_i
       puts n
       EOS
 end
 
 def dangerous_code
-  <<-EOS
+  <<~EOS
       $stderr.puts "hogehoge"
       system("kill 1")
       system("kill 20")
@@ -37,7 +37,7 @@ def dangerous_code
 end
 
 def cpp_code
-  <<-EOS
+  <<~EOS
       #include <bits/stdc++.h>
       using namespace std;
 
@@ -48,7 +48,7 @@ def cpp_code
         cin>>s;
         cout<<s<<endl;
         int a=2;
-        for(int i=0;i<10000000;i++)a=a*a%1000000007;
+        for(int i=0;i<10000000;i++) a=a*a%1000000007;
           cerr<<a<<endl;
           return 0;
           }
@@ -56,14 +56,14 @@ def cpp_code
     end
 
 def swift_code
-  <<-EOS
+  <<~EOS
           let input_line = readLine()!
           print(input_line)
           EOS
 end
 
 def go_code
-  <<-EOS
+  <<~EOS
           package main
           import (
             "bufio"
@@ -86,27 +86,27 @@ def go_code
       end
 
 def py_code
-  <<-EOS
-                num = input()
-                print(num)
-                EOS
+<<-EOS
+num = input()
+print(num)
+EOS
 end
 
 def java_code
-  <<-EOS
-                import java.util.*;
-                class Main {
-                    public static void main(String[] args) {
-                      Scanner sc=new Scanner(System.in);
-                      String s=sc.next();
-                      System.out.println(s);
-                    }
-                  }
-                  EOS
-  end
+<<-EOS
+import java.util.*;
+  class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      String s=sc.next();
+      System.out.println(s);
+  }
+}
+EOS
+end
 
 def hs_code
-  <<-EOS
-  main = getLine >>= putStrLn
-  EOS
+<<-EOS
+main = getLine >>= putStrLn
+EOS
 end
