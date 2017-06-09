@@ -48,13 +48,13 @@ describe JudgeSystem do
   end
 
   it 'compile go correctly' do
-    expect(JudgeSystem.judge_result(lang: 'go', code: go_code, answer: "2\n", stdin: '2', time: 5))
+    expect(JudgeSystem.judge_result(lang: 'go', code: go_code, answer: "2\n", stdin: '2', time: 10))
       .to eq 'AC'
 
-    expect(JudgeSystem.judge_result(lang: 'go', code: go_code, answer: "1\n", stdin: '2', time: 5))
+    expect(JudgeSystem.judge_result(lang: 'go', code: go_code, answer: "1\n", stdin: '2', time: 10))
       .to eq 'WA'
 
-    expect(JudgeSystem.judge_result(lang: 'rb', code: go_code, answer: "2\n", stdin: '2', time: 5))
+    expect(JudgeSystem.judge_result(lang: 'rb', code: go_code, answer: "2\n", stdin: '2', time: 10))
       .to eq 'RE'
 
     expect(JudgeSystem.judge_result(lang: 'go', code: go_code, answer: "2\n", stdin: '2', time: 0.001))
