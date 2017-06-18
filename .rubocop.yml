@@ -13,9 +13,6 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Metrics/BlockLength:
-  Exclude:
-
 MethodLength:
   Max: 20
 
