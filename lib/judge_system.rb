@@ -3,7 +3,6 @@ require 'zlib_input'
 require 'net/http'
 require 'uri'
 require 'json'
-require 'pathname'
 
 module JudgeSystem
   class WandBox
