@@ -48,11 +48,11 @@ module JudgeSystem
 
     def self.judge(lang, code, answer, stdin, time)
       output = run(lang, code, stdin, time)
-      if output == 'TLE' || output == 'RE'
-        result = output
-      else
-        result = output == answer ? 'AC' : 'WA'
-      end
+      result = if output == 'TLE' || output == 'RE'
+                 output
+               else
+                 output == answer ? 'AC' : 'WA'
+               end
       result
     end
   end
