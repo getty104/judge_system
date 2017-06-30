@@ -24,18 +24,23 @@ module JudgeSystem
     def self.run(lang, code, input, time)
       path = File.expand_path('../', __FILE__)
       sys = File.open("#{path}/compile_systems/#{lang}_system.rb", 'r').read
-      data = nil
       spliter = "\n<$><*><$>\n"
       stdin = BZip2Input.compress(code + spliter + input + spliter + format('%f', time))
+
       begin
         data = compile(compiler: 'ruby-head', code: sys, stdin: stdin)
       rescue
         return 'RE'
       end
+
       error = data['program_error']
       result = data['program_output']
-      return 'TLE' if error == "Killed\n"
-      return 'RE'  if result.nil? && error
+
+      if error == "Killed\n"
+        result = 'TLE'
+      elsif result.nil? && error
+        result = 'RE'
+      end
       result
     end
 
@@ -43,9 +48,12 @@ module JudgeSystem
 
     def self.judge(lang, code, answer, stdin, time)
       output = run(lang, code, stdin, time)
-      return 'TLE' if output == 'TLE'
-      return 'RE'  if output == 'RE'
-      output == answer ? 'AC' : 'WA'
+      if output == 'TLE' || output == 'RE'
+        result = output
+      else
+        result = output == answer ? 'AC' : 'WA'
+      end
+      result
     end
   end
 
