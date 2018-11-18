@@ -22,14 +22,14 @@ module JudgeSystem
     end
 
     def self.run(lang, code, input, time)
-      path = File.expand_path('../', __FILE__)
+      path = File.expand_path(__dir__)
       sys = File.open("#{path}/compile_systems/#{lang}_system.rb", 'r').read
       spliter = "\n<$><*><$>\n"
-      stdin = BZip2Input.compress(code + spliter + input + spliter + format('%f', time))
+      stdin = BZip2Input.compress(code + spliter + input + spliter + format('%<time>f', time: time))
 
       begin
         data = compile(compiler: 'ruby-head', code: sys, stdin: stdin)
-      rescue
+      rescue StandardError
         return 'RE'
       end
 
@@ -48,18 +48,17 @@ module JudgeSystem
 
     def self.judge(lang, code, answer, stdin, time)
       output = run(lang, code, stdin, time)
-      result = if output == 'TLE' || output == 'RE'
-                 output
-               else
-                 output == answer ? 'AC' : 'WA'
-               end
-      result
+      if %w[TLE RE].include?(output)
+        output
+      else
+        output == answer ? 'AC' : 'WA'
+      end
     end
   end
+
+  module_function
 
   def judge_result(lang: '', code: '', answer: '', stdin: '', time: 20)
     WandBox.judge(lang, code, answer, stdin, time)
   end
-
-  module_function :judge_result
 end

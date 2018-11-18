@@ -1,11 +1,11 @@
-[![wercker status](https://app.wercker.com/status/0964573b38729ce98909559e3779cca5/m/master "wercker status")](https://app.wercker.com/project/byKey/0964573b38729ce98909559e3779cca5) 
+[![wercker status](https://app.wercker.com/status/0964573b38729ce98909559e3779cca5/m/master "wercker status")](https://app.wercker.com/project/byKey/0964573b38729ce98909559e3779cca5)
 # JudgeSystem
 
-Judge_system is a compile and judge system for online judge.  
-This system work on [melpon/wandbox](https://github.com/melpon/wandbox).  
-That means you don't have to concern about dangerous codes if you use judge_system.  
-Judge_system returns four results ('AC', 'WA', 'RE', 'TLE').  
-Now, it can compile c, c++, ruby, go, python3, swift, haskell.  
+Judge_system is a compile and judge system for online judge.
+This system work on [melpon/wandbox](https://github.com/melpon/wandbox).
+That means you don't have to concern about dangerous codes if you use judge_system.
+Judge_system returns four results ('AC', 'WA', 'RE', 'TLE').
+Now, it can compile c, c++, ruby, go, python3, swift.
 
 ## Installation
 
@@ -35,7 +35,7 @@ JudgeSystem.judge_result lang: (string text), code: (string text), answer: (stri
 
 ```
 
-example  
+example
 
 ```ruby
 require 'judge_system'
