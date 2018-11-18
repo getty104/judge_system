@@ -104,9 +104,3 @@ import java.util.*;
 }
 EOS
 end
-
-def hs_code
-<<-EOS
-main = getLine >>= putStrLn
-EOS
-end
